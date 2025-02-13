@@ -1,0 +1,37 @@
+.color-widget>.react-colorful {
+    width: 100%;
+    height: auto;
+}
+
+.color-widget-saturation>.react-colorful {
+    height: 200px;
+}
+
+.color-widget .react-colorful__hue,
+.color-widget .react-colorful__saturation,
+.color-widget .react-colorful__alpha {
+    border-radius: 8px;
+}
+
+.color-widget .react-colorful__hue-pointer,
+.color-widget .react-colorful__saturation-pointer,
+.color-widget .react-colorful__alpha-pointer {
+    cursor: grab;
+}
+
+.color-widget .react-colorful__hue-pointer:active,
+.color-widget .react-colorful__saturation-pointer:active,
+.color-widget .react-colorful__alpha-pointer:active {
+    cursor: grabbing;
+}
+
+.color-widget-hue .react-colorful__saturation,
+.color-widget-hue .react-colorful__alpha,
+.color-widget-saturation .react-colorful__hue,
+.color-widget-saturation .react-colorful__alpha,
+.color-widget-alpha .react-colorful__hue,
+.color-widget-alpha .react-colorful__saturation {
+    display: none;
+    opacity: 0;
+    visibility: hidden;
+}
