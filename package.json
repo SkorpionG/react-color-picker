@@ -11,7 +11,7 @@
   },
   "dependencies": {
     "@tailwindcss/vite": "^4.0.0",
-    "@uiw/color-convert": "^2.7.1",
+    "@uiw/color-convert": "^2.7.3",
     "@uiw/react-color-wheel": "^2.7.1",
     "color": "^4.2.3",
     "react": "^18.3.1",
