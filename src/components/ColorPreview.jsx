@@ -1,5 +1,5 @@
-import { oneOfType, string, object, instanceOf } from "prop-types";
-import tinycolor from "tinycolor2";
+import { oneOfType, string, object, instanceOf } from 'prop-types';
+import tinycolor from 'tinycolor2';
 
 const ColorPreview = ({ color: inputColor }) => {
   // Check if the color is a tinycolor instance
@@ -16,7 +16,7 @@ const ColorPreview = ({ color: inputColor }) => {
       <div
         className="w-full h-full rounded-lg"
         style={{
-          background: "repeating-comb-4x4 #e5e7eb #ffffff",
+          background: 'repeating-comb-4x4 #e5e7eb #ffffff',
         }}
       />
     </div>

@@ -1,12 +1,12 @@
-import { oneOf, oneOfType, object, string, func, instanceOf } from "prop-types";
-import { RgbaColorPicker } from "react-colorful";
-import tinycolor from "tinycolor2";
-import "./ColorPickerWidget.css";
+import { oneOf, oneOfType, object, string, func, instanceOf } from 'prop-types';
+import { RgbaColorPicker } from 'react-colorful';
+import tinycolor from 'tinycolor2';
+import './ColorPickerWidget.css';
 
 const COLOR_PICKER_TYPES = {
-  HUE: "hue",
-  SATURATION: "saturation",
-  ALPHA: "alpha",
+  HUE: 'hue',
+  SATURATION: 'saturation',
+  ALPHA: 'alpha',
 };
 
 const ColorPickerWidget = ({
@@ -27,7 +27,7 @@ const ColorPickerWidget = ({
         colorPickerTypes.includes(colorPickerType)
           ? colorPickerType
           : colorPickerTypes[0]
-      } w-full rounded-lg ${className || ""}`}
+      } w-full rounded-lg ${className || ''}`}
       id={id}
     >
       <RgbaColorPicker color={color} onChange={onColorChange} />

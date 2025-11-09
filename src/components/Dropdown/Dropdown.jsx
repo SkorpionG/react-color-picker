@@ -1,6 +1,6 @@
-import { useState, useRef, useEffect, isValidElement } from "react";
-import { ChevronDownIcon } from "../../assets/icons";
-import { node, oneOfType, string, element, func } from "prop-types";
+import { useState, useRef, useEffect, isValidElement } from 'react';
+import { ChevronDownIcon } from '../../assets/icons';
+import { node, oneOfType, string, element, func } from 'prop-types';
 
 function Dropdown({ children, label, onToggle, className }) {
   const [isOpen, setIsOpen] = useState(false);
@@ -31,28 +31,28 @@ function Dropdown({ children, label, onToggle, className }) {
       }, 200); // Delay to prevent multiple recalculations
     };
 
-    window.addEventListener("resize", handleResize);
+    window.addEventListener('resize', handleResize);
     return () => {
       clearTimeout(resizeTimer);
-      window.removeEventListener("resize", handleResize);
+      window.removeEventListener('resize', handleResize);
     };
   }, [isOpen]);
 
   // Close the dropdown when clicking outside
   useEffect(() => {
-    const handleClickOutside = (event) => {
+    const handleClickOutside = event => {
       if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
-        console.info("click outside");
+        console.info('click outside');
         setIsOpen(false);
         onToggle?.();
       }
     };
 
     if (isOpen) {
-      document.addEventListener("mousedown", handleClickOutside);
+      document.addEventListener('mousedown', handleClickOutside);
 
       return () => {
-        document.removeEventListener("mousedown", handleClickOutside);
+        document.removeEventListener('mousedown', handleClickOutside);
       };
     }
   }, [isOpen, onToggle]);
@@ -60,16 +60,16 @@ function Dropdown({ children, label, onToggle, className }) {
   return (
     <div
       className={`inline-flex items-center h-8 relative rounded-lg ${
-        className || ""
+        className || ''
       }`}
       ref={dropdownRef}
     >
       <span
         className={`${
-          isValidElement(label) ? "" : "px-4"
+          isValidElement(label) ? '' : 'px-4'
         } h-full bg-white rounded-l-lg shadow-sm border-r-0 flex items-center select-none`}
       >
-        {isValidElement(label) ? label : label || "Copy"}
+        {isValidElement(label) ? label : label || 'Copy'}
       </span>
       <button
         className="h-full aspect-square bg-white rounded-r-lg shadow-sm hover:bg-gray-50 hover:cursor-pointer border-l-0 flex items-center justify-center transition-all duration-200"
@@ -81,7 +81,7 @@ function Dropdown({ children, label, onToggle, className }) {
         <span className="w-full h-full flex items-center justify-center">
           <ChevronDownIcon
             className={`w-6 h-6 transition-transform duration-200 ${
-              isOpen ? "rotate-180" : ""
+              isOpen ? 'rotate-180' : ''
             }`}
           />
         </span>
@@ -90,7 +90,7 @@ function Dropdown({ children, label, onToggle, className }) {
         <div
           ref={menuRef}
           className={`absolute z-100 min-w-90 bg-white rounded-sm shadow-lg flex flex-col gap-0.5 p-0.5 right-0 hover:cursor-default ${
-            isOverflow ? "bottom-12" : "top-12"
+            isOverflow ? 'bottom-12' : 'top-12'
           }`}
         >
           {children}

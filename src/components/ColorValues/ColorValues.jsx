@@ -1,15 +1,15 @@
-import { oneOfType, string, object, bool, instanceOf, func } from "prop-types";
-import ColorValue from "./ColorValue";
-import tinycolor from "tinycolor2";
-import { useColorHistory } from "../../contexts/HistoryContext";
-import { getContrastingColor } from "@uiw/color-convert";
+import { oneOfType, string, object, bool, instanceOf, func } from 'prop-types';
+import ColorValue from './ColorValue';
+import tinycolor from 'tinycolor2';
+import { useColorHistory } from '../../hooks/useColorHistory';
+import { getContrastingColor } from '@uiw/color-convert';
 
 const ColorDropdown = ({ color, colorPreview, onCopy }) => {
   const transparency = color.getAlpha() * 100;
   return (
     <>
       <ColorValue
-        label={`HEX${transparency < 100 ? "A" : ""}`}
+        label={`HEX${transparency < 100 ? 'A' : ''}`}
         colorString={
           transparency < 100 ? color.toHex8String() : color.toHexString()
         }

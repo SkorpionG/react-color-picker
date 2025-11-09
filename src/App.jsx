@@ -1,15 +1,15 @@
-import { useState } from "react";
-import "./App.css";
-import ColorPicker from "./screens/ColorPicker/ColorPicker";
-import History from "./screens/History/History";
-import SegmentSwitch from "./components/SegmentSwitch";
-import LogoIcon from "./components/LogoIcon";
-import { ColorHistoryProvider } from "./contexts/HistoryContext";
+import { useState } from 'react';
+import './App.css';
+import ColorPicker from './screens/ColorPicker/ColorPicker';
+import History from './screens/History/History';
+import SegmentSwitch from './components/SegmentSwitch';
+import LogoIcon from './components/LogoIcon';
+import { ColorHistoryProvider } from './contexts/HistoryContext';
 
 const App = () => {
   const screens = [
-    { id: "color-picker", label: "Color Picker" },
-    { id: "history", label: "History" },
+    { id: 'color-picker', label: 'Color Picker' },
+    { id: 'history', label: 'History' },
   ];
   const [screen, setScreen] = useState(screens[0].id);
 
@@ -24,8 +24,8 @@ const App = () => {
             screens={screens}
           />
 
-          {screen === "color-picker" && <ColorPicker />}
-          {screen === "history" && <History />}
+          {screen === 'color-picker' && <ColorPicker />}
+          {screen === 'history' && <History />}
         </div>
       </div>
     </ColorHistoryProvider>

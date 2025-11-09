@@ -1,27 +1,27 @@
-import { string, func } from "prop-types";
-import { useState } from "react";
-import CheckIcon from "../assets/check.svg";
-import CopyIcon from "../assets/copy.svg";
+import { string, func } from 'prop-types';
+import { useState } from 'react';
+import CheckIcon from '../assets/check.svg';
+import CopyIcon from '../assets/copy.svg';
 
-const copyToClipboard = async (text) => {
+const copyToClipboard = async text => {
   try {
     if (!navigator.clipboard) {
-      throw new Error("Clipboard API not supported");
+      throw new Error('Clipboard API not supported');
     }
 
     if (navigator.permissions) {
       const permission = await navigator.permissions.query({
-        name: "clipboard-write",
+        name: 'clipboard-write',
       });
-      if (permission.state === "denied") {
-        throw new Error("Clipboard permission denied");
+      if (permission.state === 'denied') {
+        throw new Error('Clipboard permission denied');
       }
     }
 
     await navigator.clipboard.writeText(text);
     return true;
   } catch (error) {
-    console.error("Failed to copy to clipboard:", error.message);
+    console.error('Failed to copy to clipboard:', error.message);
     return false;
   }
 };
@@ -29,7 +29,7 @@ const copyToClipboard = async (text) => {
 const Copy = ({ label, value, onCopy, className }) => {
   const [copied, setCopied] = useState(false);
   const iconClass =
-    "absolute top-0 left-0 transition-opacity duration-150 w-4 h-4 min-w-4 min-h-4";
+    'absolute top-0 left-0 transition-opacity duration-150 w-4 h-4 min-w-4 min-h-4';
 
   const handleCopy = async () => {
     if (copied) return;
@@ -50,7 +50,7 @@ const Copy = ({ label, value, onCopy, className }) => {
       title="Click to copy"
       onClick={handleCopy}
       className={`${
-        className || ""
+        className || ''
       } font-mono text-gray-600 bg-white pl-3 pr-2 py-1 text-sm rounded shadow text-center align-middle flex items-center gap-2 hover:bg-gray-50 active:scale-95 transition-all duration-150
             hover:cursor-copy`}
     >
@@ -59,12 +59,12 @@ const Copy = ({ label, value, onCopy, className }) => {
         <img
           alt="Copy"
           src={CopyIcon}
-          className={`${iconClass} ${copied ? "opacity-0" : "opacity-100"}`}
+          className={`${iconClass} ${copied ? 'opacity-0' : 'opacity-100'}`}
         />
         <img
           alt="Copied"
           src={CheckIcon}
-          className={`${iconClass} ${copied ? "opacity-100" : "opacity-0"}`}
+          className={`${iconClass} ${copied ? 'opacity-100' : 'opacity-0'}`}
         />
       </div>
     </button>

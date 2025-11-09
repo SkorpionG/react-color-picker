@@ -1,19 +1,19 @@
 #color-wheel .w-color-wheel-pointer {
-    cursor: grab !important;
+  cursor: grab !important;
 }
 
 #color-wheel .w-color-wheel-fill {
-    border: 0.025rem solid #fff !important;
-    cursor: grab !important;
-    width: 28px !important;
-    height: 28px !important;
-    transform: translate(-13px, -13px) !important;
+  border: 0.025rem solid #fff !important;
+  cursor: grab !important;
+  width: 28px !important;
+  height: 28px !important;
+  transform: translate(-13px, -13px) !important;
 }
 
 #color-wheel .w-color-wheel-pointer:active {
-    cursor: grabbing !important;
+  cursor: grabbing !important;
 }
 
 #color-wheel .w-color-wheel-fill:active {
-    cursor: grabbing !important;
+  cursor: grabbing !important;
 }

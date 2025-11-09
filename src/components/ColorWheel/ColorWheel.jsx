@@ -1,9 +1,9 @@
-import { useState, useEffect } from "react";
-import { oneOfType, string, func, object, instanceOf } from "prop-types";
-import Wheel from "@uiw/react-color-wheel";
-import { hsvaToRgba, rgbaToHsva } from "@uiw/color-convert";
-import tinycolor from "tinycolor2";
-import "./ColorWheel.css";
+import { useState, useEffect } from 'react';
+import { oneOfType, string, func, object, instanceOf } from 'prop-types';
+import Wheel from '@uiw/react-color-wheel';
+import { hsvaToRgba, rgbaToHsva } from '@uiw/color-convert';
+import tinycolor from 'tinycolor2';
+import './ColorWheel.css';
 
 const ColorWheel = ({ color: inputColor, onChange: onColorChange }) => {
   const color = (
@@ -24,12 +24,12 @@ const ColorWheel = ({ color: inputColor, onChange: onColorChange }) => {
       setWheelSize(size);
     };
 
-    window.addEventListener("resize", updateSize);
+    window.addEventListener('resize', updateSize);
     updateSize();
-    return () => window.removeEventListener("resize", updateSize);
+    return () => window.removeEventListener('resize', updateSize);
   }, []);
 
-  const handleColorChange = (value) => {
+  const handleColorChange = value => {
     onColorChange({ ...hsvaToRgba(value.hsva), a: color.a });
   };
 

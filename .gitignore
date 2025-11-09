@@ -139,3 +139,6 @@ dist
 *.njsproj
 *.sln
 *.sw?
+
+# Misc
+.specstory/

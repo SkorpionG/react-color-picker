@@ -1,13 +1,13 @@
-import { useState } from "react";
-import { string, oneOfType, object, number, instanceOf } from "prop-types";
-import ColorValue from "../../../components/ColorValues/ColorValue";
-import { ChevronDownIcon } from "../../../assets/icons";
-import tinycolor from "tinycolor2";
-import Dropdown from "../../../components/Dropdown/Dropdown";
+import { useState } from 'react';
+import { string, oneOfType, object, number, instanceOf } from 'prop-types';
+import ColorValue from '../../../components/ColorValues/ColorValue';
+import { ChevronDownIcon } from '../../../assets/icons';
+import tinycolor from 'tinycolor2';
+import Dropdown from '../../../components/Dropdown/Dropdown';
 
 const DropdownActionList = ({ color, transparency, className }) => {
   return (
-    <div className={className || ""}>
+    <div className={className || ''}>
       <ColorValue
         label="HEX"
         colorString={
@@ -44,7 +44,7 @@ const HistoryItem = ({ color: inputColor }) => {
           <span className="font-medium">Copy</span>
           <ChevronDownIcon
             className={`w-5 h-5 transition-transform duration-200 ${
-              isOpen ? "rotate-180" : ""
+              isOpen ? 'rotate-180' : ''
             }`}
           />
         </button>

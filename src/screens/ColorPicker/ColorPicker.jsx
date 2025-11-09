@@ -1,11 +1,11 @@
-import { useState, useEffect } from "react";
-import { styled } from "styled-components";
-import tinycolor from "tinycolor2";
-import ColorWheel from "../../components/ColorWheel/ColorWheel";
-import ColorValues from "../../components/ColorValues/ColorValues";
-import ColorPreview from "../../components/ColorPreview";
-import ColorPickerWidget from "../../components/ColorPickerWidget/ColorPickerWidget";
-import { Panel, PanelGroup, PanelResizeHandle } from "react-resizable-panels";
+import { useState, useEffect } from 'react';
+import { styled } from 'styled-components';
+import tinycolor from 'tinycolor2';
+import ColorWheel from '../../components/ColorWheel/ColorWheel';
+import ColorValues from '../../components/ColorValues/ColorValues';
+import ColorPreview from '../../components/ColorPreview';
+import ColorPickerWidget from '../../components/ColorPickerWidget/ColorPickerWidget';
+import { Panel, PanelGroup, PanelResizeHandle } from 'react-resizable-panels';
 
 const AppTitle = styled.h1`
   background: linear-gradient(40deg, #ea00ff, #ea00ff, #03fbff, #03fffb);
@@ -19,7 +19,7 @@ const ColorPicker = () => {
   );
   const [isVertical, setIsVertical] = useState(false);
 
-  const handleColorChange = (color) => {
+  const handleColorChange = color => {
     setSelectedColor(tinycolor(color));
   };
 
@@ -30,9 +30,9 @@ const ColorPicker = () => {
 
     handleResize();
 
-    window.addEventListener("resize", handleResize);
+    window.addEventListener('resize', handleResize);
 
-    return () => window.removeEventListener("resize", handleResize);
+    return () => window.removeEventListener('resize', handleResize);
   }, []);
 
   return (
@@ -44,14 +44,14 @@ const ColorPicker = () => {
         Color Picker
       </AppTitle>
       <PanelGroup
-        direction={isVertical ? "vertical" : "horizontal"}
+        direction={isVertical ? 'vertical' : 'horizontal'}
         className="flex gap-6"
-        autoSaveId={"color-picker"}
-        style={{ overflow: "visible" }}
+        autoSaveId={'color-picker'}
+        style={{ overflow: 'visible' }}
       >
         <Panel
           className="flex flex-col gap-6"
-          style={{ overflow: "visible" }}
+          style={{ overflow: 'visible' }}
           defaultSize={50}
           minSize={40}
           maxSize={60}
@@ -78,7 +78,7 @@ const ColorPicker = () => {
         )}
         <Panel
           className="flex flex-col gap-6"
-          style={{ overflow: "visible" }}
+          style={{ overflow: 'visible' }}
           defaultSize={50}
         >
           <ColorPreview color={selectedColor} />

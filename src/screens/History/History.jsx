@@ -1,5 +1,5 @@
-import { useColorHistory } from "../../contexts/HistoryContext";
-import HistoryItem from "./components/HistoryItem";
+import { useColorHistory } from '../../hooks/useColorHistory';
+import HistoryItem from './components/HistoryItem';
 
 const History = () => {
   const { colorHistory } = useColorHistory();

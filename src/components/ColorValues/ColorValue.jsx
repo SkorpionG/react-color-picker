@@ -1,7 +1,7 @@
-import { string, func, bool, oneOfType, node, element } from "prop-types";
-import tinycolor from "tinycolor2";
-import Copy from "../Copy";
-import Dropdown from "../Dropdown/Dropdown";
+import { string, func, bool, oneOfType, node, element } from 'prop-types';
+import tinycolor from 'tinycolor2';
+import Copy from '../Copy';
+import Dropdown from '../Dropdown/Dropdown';
 
 const ColorValue = ({
   label,
@@ -29,7 +29,7 @@ const ColorValue = ({
       label={label}
       value={colorString}
       onCopy={handleCopy}
-      className={dropdownMenu ? "shadow-none bg-transparent" : ""}
+      className={dropdownMenu ? 'shadow-none bg-transparent' : ''}
     />
   );
 
