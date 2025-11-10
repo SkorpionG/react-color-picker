@@ -1,9 +1,10 @@
 import { useState } from 'react';
 import { string, oneOfType, object, number, instanceOf } from 'prop-types';
 import ColorValue from '../../../components/ColorValues/ColorValue';
-import { ChevronDownIcon } from '../../../assets/icons';
+import { ChevronDownIcon, TrashIcon } from '../../../assets/icons';
 import tinycolor from 'tinycolor2';
 import Dropdown from '../../../components/Dropdown/Dropdown';
+import { useColorHistory } from '../../../hooks/useColorHistory';
 
 const DropdownActionList = ({ color, transparency, className }) => {
   return (
@@ -22,12 +23,18 @@ const DropdownActionList = ({ color, transparency, className }) => {
   );
 };
 
-const HistoryItem = ({ color: inputColor }) => {
+const HistoryItem = ({ color: inputColor, timestamp }) => {
   const color =
     inputColor instanceof tinycolor ? inputColor : tinycolor(inputColor);
+  const { removeFromHistory } = useColorHistory();
   const [isOpen, setIsOpen] = useState(false);
   const backgroundColor = color.toRgbString();
   const transparency = color.getAlpha() * 100;
+
+  const handleDelete = e => {
+    e.stopPropagation();
+    removeFromHistory(timestamp);
+  };
 
   return (
     <div className="bg-white rounded-lg shadow-sm">
@@ -49,13 +56,26 @@ const HistoryItem = ({ color: inputColor }) => {
           />
         </button>
 
-        <Dropdown onToggle={() => setIsOpen(!isOpen)} className="max-sm:hidden">
-          <DropdownActionList
-            color={color}
-            transparency={transparency}
-            // className="z-100 min-w-80 bg-white rounded-sm shadow-lg flex flex-col gap-0.5 p-0.5 top-12 right-0 hover:cursor-default"
-          />
-        </Dropdown>
+        <div className="flex items-center gap-2">
+          <Dropdown
+            onToggle={() => setIsOpen(!isOpen)}
+            className="max-sm:hidden"
+          >
+            <DropdownActionList
+              color={color}
+              transparency={transparency}
+              // className="z-100 min-w-80 bg-white rounded-sm shadow-lg flex flex-col gap-0.5 p-0.5 top-12 right-0 hover:cursor-default"
+            />
+          </Dropdown>
+
+          <button
+            onClick={handleDelete}
+            className="p-2 text-gray-400 hover:text-red-600 hover:bg-red-50 rounded-lg transition-colors duration-200 cursor-pointer"
+            aria-label="Delete color"
+          >
+            <TrashIcon className="w-5 h-5" />
+          </button>
+        </div>
       </div>
 
       {isOpen && (
@@ -77,6 +97,7 @@ DropdownActionList.propTypes = {
 
 HistoryItem.propTypes = {
   color: oneOfType([string, object, instanceOf(tinycolor)]).isRequired,
+  timestamp: string.isRequired,
 };
 
 export default HistoryItem;

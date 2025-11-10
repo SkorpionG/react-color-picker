@@ -1,14 +1,61 @@
-import { createContext, useState } from 'react';
+import { createContext, useState, useEffect } from 'react';
 import { node, element, oneOfType } from 'prop-types';
 import tinycolor from 'tinycolor2';
 
 const ColorHistoryContext = createContext();
 
+const STORAGE_KEY = 'copiedColorHistory';
+
+// Helper function to load color history from local storage
+const loadFromLocalStorage = () => {
+  try {
+    const stored = localStorage.getItem(STORAGE_KEY);
+    if (!stored) return [];
+
+    const parsed = JSON.parse(stored);
+    // Filter out invalid colors during load
+    return parsed
+      .map(item => ({
+        color: tinycolor(item.color),
+        timestamp: item.timestamp,
+      }))
+      .filter(item => item.color.isValid());
+  } catch (error) {
+    console.error('Failed to load color history from local storage:', error);
+    return [];
+  }
+};
+
+// Helper function to save color history to local storage
+const saveToLocalStorage = colorHistory => {
+  try {
+    const serialized = colorHistory.map(item => ({
+      color: item.color.toHexString(),
+      timestamp: item.timestamp,
+    }));
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(serialized));
+  } catch (error) {
+    console.error('Failed to save color history to local storage:', error);
+  }
+};
+
 export const ColorHistoryProvider = ({ children }) => {
-  const [colorHistory, setColorHistory] = useState([]);
+  const [colorHistory, setColorHistory] = useState(loadFromLocalStorage);
+
+  // Save to local storage whenever color history changes
+  useEffect(() => {
+    saveToLocalStorage(colorHistory);
+  }, [colorHistory]);
 
   const addToHistory = color => {
     const tinyColor = color instanceof tinycolor ? color : tinycolor(color);
+
+    // Validate color before adding
+    if (!tinyColor.isValid()) {
+      console.warn('Invalid color provided to addToHistory:', color);
+      return;
+    }
+
     setColorHistory(prevColors => {
       if (
         prevColors.length !== 0 &&
@@ -28,8 +75,20 @@ export const ColorHistoryProvider = ({ children }) => {
     });
   };
 
+  const removeFromHistory = timestamp => {
+    setColorHistory(prevColors =>
+      prevColors.filter(item => item.timestamp !== timestamp)
+    );
+  };
+
+  const clearHistory = () => {
+    setColorHistory([]);
+  };
+
   return (
-    <ColorHistoryContext.Provider value={{ colorHistory, addToHistory }}>
+    <ColorHistoryContext.Provider
+      value={{ colorHistory, addToHistory, removeFromHistory, clearHistory }}
+    >
       {children}
     </ColorHistoryContext.Provider>
   );
