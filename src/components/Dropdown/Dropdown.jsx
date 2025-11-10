@@ -1,4 +1,10 @@
-import { useState, useRef, useEffect, isValidElement } from 'react';
+import {
+  useState,
+  useRef,
+  useEffect,
+  useLayoutEffect,
+  isValidElement,
+} from 'react';
 import { ChevronDownIcon } from '../../assets/icons';
 import { node, oneOfType, string, element, func } from 'prop-types';
 
@@ -9,12 +15,13 @@ function Dropdown({ children, label, onToggle, className }) {
   const menuRef = useRef(null);
 
   // When dropdown opens, recalculate overflow status
-  useEffect(() => {
+  // Using useLayoutEffect for DOM measurements to avoid visual flicker
+  useLayoutEffect(() => {
     if (isOpen && menuRef.current) {
       const rect = menuRef.current.getBoundingClientRect();
-      if (rect.bottom > window.innerHeight) {
-        setIsOverflow(true);
-      }
+      setIsOverflow(rect.bottom > window.innerHeight);
+    } else if (!isOpen) {
+      setIsOverflow(false);
     }
   }, [isOpen]);
 
