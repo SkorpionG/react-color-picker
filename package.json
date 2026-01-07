@@ -22,7 +22,7 @@
     "format:check": "prettier --check ."
   },
   "dependencies": {
-    "@tailwindcss/vite": "^4.1.17",
+    "@tailwindcss/vite": "^4.1.18",
     "@uiw/color-convert": "^2.9.2",
     "@uiw/react-color-wheel": "^2.9.2",
     "color": "^5.0.2",
