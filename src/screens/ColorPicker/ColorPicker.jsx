@@ -5,7 +5,7 @@ import ColorWheel from '../../components/ColorWheel/ColorWheel';
 import ColorValues from '../../components/ColorValues/ColorValues';
 import ColorPreview from '../../components/ColorPreview';
 import ColorPickerWidget from '../../components/ColorPickerWidget/ColorPickerWidget';
-import { Panel, PanelGroup, PanelResizeHandle } from 'react-resizable-panels';
+import { Panel, Group, Separator } from 'react-resizable-panels';
 
 const AppTitle = styled.h1`
   background: linear-gradient(40deg, #ea00ff, #ea00ff, #03fbff, #03fffb);
@@ -43,8 +43,8 @@ const ColorPicker = () => {
       >
         Color Picker
       </AppTitle>
-      <PanelGroup
-        direction={isVertical ? 'vertical' : 'horizontal'}
+      <Group
+        orientation={isVertical ? 'vertical' : 'horizontal'}
         className="flex gap-6"
         autoSaveId={'color-picker'}
         style={{ overflow: 'visible' }}
@@ -52,9 +52,9 @@ const ColorPicker = () => {
         <Panel
           className="flex flex-col gap-6"
           style={{ overflow: 'visible' }}
-          defaultSize={50}
-          minSize={40}
-          maxSize={60}
+          defaultSize="50%"
+          minSize="40%"
+          maxSize="60%"
         >
           <ColorWheel color={selectedColor} onChange={handleColorChange} />
           <ColorPickerWidget
@@ -71,7 +71,7 @@ const ColorPicker = () => {
           />
         </Panel>
         {!isVertical && (
-          <PanelResizeHandle
+          <Separator
             className="w-2 hover:bg-gray-200 transition"
             disabled={isVertical}
           />
@@ -79,13 +79,13 @@ const ColorPicker = () => {
         <Panel
           className="flex flex-col gap-6"
           style={{ overflow: 'visible' }}
-          defaultSize={50}
+          defaultSize="50%"
         >
           <ColorPreview color={selectedColor} />
 
           <ColorValues color={selectedColor} />
         </Panel>
-      </PanelGroup>
+      </Group>
     </>
   );
 };
